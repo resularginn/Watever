@@ -30,9 +30,8 @@ public class HistoryActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_history); // activity_history.xml olduğundan emin ol
-
-        // Geri Butonu
+        setContentView(R.layout.activity_history);
+        
         View btnBack = findViewById(R.id.btn_back);
         if (btnBack != null) btnBack.setOnClickListener(v -> finish());
 
@@ -51,18 +50,18 @@ public class HistoryActivity extends AppCompatActivity {
         if (position >= 0 && position < waterList.size()) {
             MainActivity.WaterEntry entry = waterList.get(position);
 
-            // 1. Toplamı Düşür
+        
             currentWater -= entry.amount;
             if (currentWater < 0) currentWater = 0;
 
-            // 2. Listeden Sil
+     
             waterList.remove(position);
 
-            // 3. Adaptöre Haber Ver (Animasyonlu Silme)
+       
             adapter.notifyItemRemoved(position);
-            adapter.notifyItemRangeChanged(position, waterList.size()); // Sıra numaralarını güncelle
+            adapter.notifyItemRangeChanged(position, waterList.size());
 
-            // 4. Kaydet
+       
             saveWaterData();
 
             Toast.makeText(this, "Kayıt silindi", Toast.LENGTH_SHORT).show();
@@ -84,7 +83,7 @@ public class HistoryActivity extends AppCompatActivity {
                 jsonArray.put(obj);
             }
 
-            // MainActivity ile aynı anahtarları kullanıyoruz (_total ve _history)
+        
             pref.edit()
                     .putInt(today + "_total", currentWater)
                     .putString(today + "_history", jsonArray.toString())
@@ -97,7 +96,6 @@ public class HistoryActivity extends AppCompatActivity {
         currentWater = pref.getInt(today + "_total", 0);
         waterList.clear();
 
-        // MainActivity ile aynı anahtarı kullanıyoruz (_history)
         String listJson = pref.getString(today + "_history", "[]");
         try {
             JSONArray jsonArray = new JSONArray(listJson);
@@ -109,7 +107,7 @@ public class HistoryActivity extends AppCompatActivity {
         } catch (Exception e) { e.printStackTrace(); }
     }
 
-    // --- DÜZELTİLMİŞ ADAPTÖR ---
+
     public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHolder> {
         private List<MainActivity.WaterEntry> list;
         private OnItemDeleteListener deleteListener;
@@ -134,8 +132,6 @@ public class HistoryActivity extends AppCompatActivity {
             holder.tvTime.setText(entry.time);
             holder.imgIcon.setImageResource(entry.iconResId);
 
-            // KRİTİK DÜZELTME: getAdapterPosition() kullanıyoruz.
-            // Bu sayede silme işleminden sonra index kayması hatası olmuyor.
             holder.btnDelete.setOnClickListener(v -> {
                 int currentPos = holder.getAdapterPosition();
                 if (currentPos != RecyclerView.NO_POSITION) {
