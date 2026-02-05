@@ -12,8 +12,7 @@ import androidx.core.app.NotificationCompat;
 
 public class NotificationReceiver extends BroadcastReceiver {
 
-    // İŞTE SENİN TXT DOSYAN GİBİ ÇALIŞACAK LİSTE
-    // Buraya istediğin kadar mesaj ekleyebilirsin, sırayla gönderir.
+
     private static final String[] MESSAGES = {
             "Selam! Bir bardak su içmeye ne dersin? 💧",
             "Vücudunun %70'i su, dengeni koru! 🌊",
@@ -27,36 +26,30 @@ public class NotificationReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        // 1. Kanalı Oluştur (Android 8+ için zorunlu)
         createNotificationChannel(context);
 
-        // 2. Sıradaki Mesajı Bul
         SharedPreferences pref = context.getSharedPreferences("WateverData", Context.MODE_PRIVATE);
-        int currentIndex = pref.getInt("msg_index", 0); // Kaldığımız yeri al
+        int currentIndex = pref.getInt("msg_index", 0); 
 
-        // Listeden mesajı çek
+
         String messageToSend = MESSAGES[currentIndex];
-
-        // 3. Bir Sonraki Sefer İçin İndeksi Güncelle
         int nextIndex = currentIndex + 1;
         if (nextIndex >= MESSAGES.length) {
-            nextIndex = 0; // Liste bittiyse başa dön
+            nextIndex = 0;
         }
         pref.edit().putInt("msg_index", nextIndex).apply();
 
-        // 4. Bildirime Tıklanınca Uygulamayı Aç
         Intent appIntent = new Intent(context, MainActivity.class);
         appIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         PendingIntent pendingIntent = PendingIntent.getActivity(
                 context,
                 0,
                 appIntent,
-                PendingIntent.FLAG_IMMUTABLE // Android 12+ için güvenlik şartı
+                PendingIntent.FLAG_IMMUTABLE
         );
 
-        // 5. Bildirimi Gönder
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context, "water_channel")
-                .setSmallIcon(R.drawable.ic_drop_fill) // İKONUNUZ (Eğer yoksa ic_launcher kullanın)
+                .setSmallIcon(R.drawable.ic_drop_fill)
                 .setContentTitle("Su Takip")
                 .setContentText(messageToSend)
                 .setPriority(NotificationCompat.PRIORITY_HIGH)
