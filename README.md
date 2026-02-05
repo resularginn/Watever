@@ -7,8 +7,7 @@
 ## 🚀 Key Features
 
 * **Dynamic Goal Calculation:** Automatically calculates your daily water target using physiological formulas:
-    * **Men:** Weight (kg) × 35ml
-    * **Women:** Weight (kg) × 31ml
+    * Weight (kg) × 35ml
 * **Interactive Analytics:** A custom-built weekly bar chart with **Touch Interaction**. 
     * *Press and hold* any bar to see the exact intake value in a dynamic popup.
     * The popup automatically hides when you release your finger.
