@@ -38,7 +38,6 @@
   <img src="screenshots/settings.jpg" width="30%" alt="Ayarlar" />
 </p>
 
-*(Note: Ensure your screenshot files are named exactly as above and uploaded to the root directory)*
 
 ## 📋 How to Run
 
