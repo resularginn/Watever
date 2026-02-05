@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:background="@color/white"
+    android:gravity="center_vertical">
+
+    <TextView
+        android:text="Tekrar Merhaba!"
+        android:textSize="32sp"
+        android:textStyle="bold"
+        android:textColor="#0F172A"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:text="Seni tekrar görmek harika. Lütfen giriş yap."
+        android:textSize="16sp"
+        android:textColor="#64748B"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="40dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:text="E-POSTA"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        android:textColor="#94A3B8"
+        android:layout_marginBottom="8dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <EditText
+        android:id="@+id/et_email"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:background="@drawable/bg_input_field"
+        android:hint="ornek@mail.com"
+        android:paddingHorizontal="16dp"
+        android:inputType="textEmailAddress"
+        android:textColor="#0F172A"
+        android:textSize="16sp"
+        android:layout_marginBottom="24dp"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp">
+        <TextView
+            android:text="ŞİFRE"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:textColor="#94A3B8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:text="Şifremi Unuttum"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:textColor="@color/blue_primary"
+            android:layout_alignParentEnd="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </RelativeLayout>
+
+    <EditText
+        android:id="@+id/et_password"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:background="@drawable/bg_input_field"
+        android:hint="••••••••"
+        android:paddingHorizontal="16dp"
+        android:inputType="textPassword"
+        android:textColor="#0F172A"
+        android:textSize="16sp"
+        android:layout_marginBottom="32dp"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_login"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:text="Giriş Yap"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:textAllCaps="false"
+        android:textSize="18sp"
+        android:background="@drawable/bg_primary_button"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginTop="24dp">
+
+        <TextView
+            android:text="Hesabın yok mu? "
+            android:textColor="#64748B"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/tv_register_link"
+            android:text="Kayıt Ol"
+            android:textColor="@color/blue_primary"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:clickable="true"
+            android:focusable="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+</LinearLayout>

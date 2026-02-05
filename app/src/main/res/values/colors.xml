@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <color name="blue_primary">#3B82F6</color>
+    <color name="blue_dark">#1E40AF</color>
+
+    <color name="blue_card_start">#3B82F6</color>
+    <color name="blue_card_end">#2563EB</color>
+
+    <color name="blue_gradient_start">#3B82F6</color>
+    <color name="blue_gradient_end">#2563EB</color>
+
+    <color name="bg_app">#F8FAFF</color>
+    <color name="text_dark">#0F172A</color>
+    <color name="text_gray">#64748B</color>
+</resources>
