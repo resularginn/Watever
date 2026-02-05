@@ -59,9 +59,6 @@ public class MainActivity extends AppCompatActivity {
         loadTakipUI();
     }
 
-    // ==========================================
-    // 1. TAKİP EKRANI
-    // ==========================================
     private void loadTakipUI() {
         setContentView(R.layout.activity_main);
         setupNavigation(1);
@@ -88,28 +85,21 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.btn_add_500).setOnClickListener(v -> addWater(500, "BÜYÜK ŞİŞE", R.drawable.ic_wave));
     }
 
-    // ==========================================
-    // 2. İSTATİSTİK EKRANI
-    // ==========================================
+
     private void loadStatisticsUI() {
         setContentView(R.layout.activity_statistics);
         setupNavigation(2);
         calculateAndDrawStats();
     }
 
-    // ==========================================
-    // 3. AYARLAR EKRANI
-    // ==========================================
+
     private void loadAyarlarUI() {
         setContentView(R.layout.activity_settings);
         setupNavigation(3);
         updateSettingsUI();
         setupSettingsLogic();
     }
-
-    // ------------------------------------------
-    // MANTIK METODLARI
-    // ------------------------------------------
+    
 
     private void updateDashboardUI() {
         dailyGoal = pref.getInt("goal", 2500);
@@ -237,9 +227,7 @@ public class MainActivity extends AppCompatActivity {
         container.addView(column);
     }
 
-    // ------------------------------------------
-    // DİYALOGLAR
-    // ------------------------------------------
+
     private void showNameDialog() {
         AlertDialog.Builder b = new AlertDialog.Builder(this);
         b.setTitle("İsim Soyisim");
@@ -280,9 +268,7 @@ public class MainActivity extends AppCompatActivity {
         }).show();
     }
 
-    // ------------------------------------------
-    // LİSTE VE SU EKLEME MANTIĞI
-    // ------------------------------------------
+
     private void addWater(int amt, String type, int icon) {
         currentWater += amt;
         String key = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
@@ -365,9 +351,6 @@ public class MainActivity extends AppCompatActivity {
 
     private int dpToPx(int dp) { return (int)(dp * getResources().getDisplayMetrics().density); }
 
-    // ------------------------------------------
-    // ADAPTÖR VE MODELLER (GÜNCELLENMİŞ)
-    // ------------------------------------------
 
     private class MainHistoryAdapter extends RecyclerView.Adapter<MainHistoryAdapter.ViewHolder> {
         private List<WaterEntry> list;
@@ -386,37 +369,28 @@ public class MainActivity extends AppCompatActivity {
             h.tvTime.setText(e.time);
             h.imgIcon.setImageResource(e.iconResId);
 
-            // SİLME İŞLEMİ (DÜZELTİLMİŞ)
+
             h.btnDelete.setOnClickListener(v -> {
                 int pos = h.getAdapterPosition();
 
-                // Güvenlik: Pozisyon geçerli mi?
+   
                 if (pos != RecyclerView.NO_POSITION && pos < list.size()) {
 
-                    // 1. Veriyi güncelle
+   
                     WaterEntry deletedItem = list.get(pos);
                     currentWater = Math.max(0, currentWater - deletedItem.amount);
-
-                    // 2. Listeden sil
                     list.remove(pos);
-
-                    // 3. ANİMASYON MANTIĞI (Düzeltilen Kısım)
-                    // Önce silinen satırın animasyonunu yap
                     notifyItemRemoved(pos);
 
-                    // EĞER silinen eleman SONUNCU DEĞİLSE, alttakileri yukarı kaydır.
-                    // Sonuncuyu sildiysek buna gerek yok, çünkü altta kimse kalmadı.
                     if (pos < list.size()) {
                         notifyItemRangeChanged(pos, list.size() - pos);
                     }
 
-                    // 4. Veritabanını ve UI'ı güncelle
                     updateDatabaseAndUI();
                 }
             });
         }
 
-        // Veritabanı ve Dashboard güncelleme yardımcısı
         private void updateDatabaseAndUI() {
             String key = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
             pref.edit().putInt(key + "_total", currentWater).apply();
