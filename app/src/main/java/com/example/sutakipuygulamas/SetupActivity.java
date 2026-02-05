@@ -40,30 +40,25 @@ public class SetupActivity extends AppCompatActivity {
             String wStr = etWeight.getText().toString().trim();
             String hStr = etHeight.getText().toString().trim();
 
-            // 1. KONTROL: Kilo (En üstteki alan)
             if (wStr.isEmpty()) {
                 Toast.makeText(this, "Lütfen kilonuzu girin!", Toast.LENGTH_SHORT).show();
-                return; // İşlemi durdur
+                return; 
             }
 
-            // 2. KONTROL: Boy (Ortadaki alan)
             if (hStr.isEmpty()) {
                 Toast.makeText(this, "Lütfen boyunuzu girin!", Toast.LENGTH_SHORT).show();
-                return; // İşlemi durdur
+                return;
             }
 
-            // 3. KONTROL: Cinsiyet (En alttaki seçim)
             if (isMale == null) {
                 Toast.makeText(this, "Lütfen cinsiyetinizi seçin!", Toast.LENGTH_SHORT).show();
-                return; // İşlemi durdur
+                return;
             }
 
-            // Hata yoksa hesaplamaya geç
             try {
                 int weight = Integer.parseInt(wStr);
                 int height = Integer.parseInt(hStr);
 
-                // Basit su hedefi formülü
                 double goal = weight * 35;
                 if (isMale) { goal = goal * 1.10; }
 
