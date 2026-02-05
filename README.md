@@ -31,10 +31,12 @@
 
 ## 📸 Screenshots
 
+## 📸 Screenshots
+
 <p align="center">
-  <img src="dashboard.png" width="30%" alt="Main Dashboard" />
-  <img src="stats.png" width="30%" alt="Weekly Statistics" />
-  <img src="settings.png" width="30%" alt="User Settings" />
+  <img src="screenshots/main.jpg" width="30%" alt="Ana Ekran" />
+  <img src="screenshots/stats.jpg" width="30%" alt="İstatistikler" />
+  <img src="screenshots/settings.jpg" width="30%" alt="Ayarlar" />
 </p>
 
 *(Note: Ensure your screenshot files are named exactly as above and uploaded to the root directory)*
